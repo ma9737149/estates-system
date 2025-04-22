@@ -1,0 +1,100 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #343a40 !important;
+    padding: 20px;
+}
+
+.navbar a.nav-link {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #f8f9fa !important;
+    transition: color 0.3s ease;
+}
+
+.navbar a.nav-link:hover {
+    color: #28a745 !important;
+}
+
+.navbar .navbar-toggler-icon {
+    background-color: #28a745 !important;
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #28a745 !important;
+    letter-spacing: 1px;
+}
+
+.navbar .nav-item.dropdown .dropdown-menu {
+    background-color: #343a40;
+    border-radius: 10px;
+}
+
+.navbar .nav-item.dropdown .dropdown-item {
+    color: #f8f9fa !important;
+    font-size: 16px;
+}
+
+.navbar .nav-item.dropdown .dropdown-item:hover {
+    background-color: #28a745;
+    color: #fff !important;
+}
+
+/* Navbar fixed at top */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+}
+
+body {
+    padding-top: 80px; /* Adjust based on navbar height */
+    font-family: 'Poppins' , sans-serif !important;
+}
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+
+.icons-wrapper {
+    width: 12%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icons-wrapper p {
+    font-size: 19px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: #000;
+    transition: 0.5s;
+}
+
+.icons-wrapper p:hover{
+    transform: scale(1.2);
+}
+
+a {
+    text-decoration : none;
+}
