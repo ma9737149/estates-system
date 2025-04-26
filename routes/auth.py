@@ -72,7 +72,7 @@ def signUp():
     return render_template('auth/signUp.html' , form=form)
 
 
-@auth.get('/')
+@auth.get('/logout')
 def logout():
     if current_user.is_authenticated:
         logout_user()
