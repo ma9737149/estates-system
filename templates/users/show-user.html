@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<style>
+    .nav-tabs .nav-link {
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        margin-right: 5px;
+        background-color: #d4edda;
+        border-radius: 10px 10px 0 0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-tabs .nav-link:hover {
+        background-color: #c3e6cb;
+        color: #0c4128;
+    }
+
+    .nav-tabs .nav-link.active {
+        color: white;
+        background-color: #198754; /* Bootstrap green */
+        border-color: #198754;
+    }
+
+    .tab-content {
+        border: 1px solid #c3e6cb;
+        border-top: none;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 0 0 10px 10px;
+    }
+    .property-card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .property-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .property-card img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .property-card .card-body {
+        padding: 15px;
+    }
+
+    .property-card .card-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .property-card .card-text {
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+    .property-card .badge {
+        font-size: 0.9rem;
+        padding: 0.5em 0.75em;
+    }
+
+</style>
+
+
+
+<div class="card shadow p-4">
+    <ul class="nav nav-tabs mb-3" id="profileTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">User Info</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties" type="button" role="tab">Properties Added</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="clients-tab" data-bs-toggle="tab" data-bs-target="#clients" type="button" role="tab">Clients</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="profileTabsContent">
+        <!-- User Info Tab -->
+        <div class="tab-pane fade show active" id="info" role="tabpanel">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <img src="{{ url_for('static' , filename = user.profile_image) }}" alt="Profile Image" class="rounded-circle mb-3" width="150" height="150">
+                    <h4 class="mt-2">{{ user.username }}</h4>
+                    <p class="text-muted">{{ user.role }}</p>
+                </div>
+                <div class="col-md-9">
+                    <h5>User Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+                            <p>
+                                <strong>Account Active:</strong> 
+                                {% if user.active == 1 %}
+                                Yes
+                                {% else %}
+                                No
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>User ID:</strong> {{ user.id }}</p>
+                            <p><strong>Account Created At:</strong> {{ user.created_at }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Properties Tab -->
+        <div class="tab-pane fade" id="properties" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card property-card">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&q=80" alt="Property Image" class="img-fluid rounded">
+
+                        <div class="card-body">
+                            <h6 class="card-title">Modern Apartment</h6>
+                            <p class="card-text">A beautiful apartment in the city center with great views.</p>
+                            <span class="badge bg-success">$250,000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card property-card">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" alt="Property Image" class="img-fluid rounded">
+                        <div class="card-body">
+                            <h6 class="card-title">Luxury Villa</h6>
+                            <p class="card-text">Spacious villa with a large garden and pool.</p>
+                            <span class="badge bg-success">$500,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clients Tab -->
+        <div class="tab-pane fade" id="clients" role="tabpanel">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Jane Smith</strong>
+                        <span class="text-muted d-block">jane.smith@example.com</span>
+                    </div>
+                    <span class="badge bg-success rounded-pill">+1 345 678 901</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Mike Johnson</strong>
+                        <span class="text-muted d-block">mike.johnson@example.com</span>
+                    </div>
+                    <span class="badge bg-success rounded-pill">+1 456 789 012</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<p>{{ url_for('static', filename=user.profile_image) }}</p>
+
+
+{% endblock %}

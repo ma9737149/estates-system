@@ -27,7 +27,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('estates.index') }}">Home</a>
                 </li>
-                {% if not current_user.authenticated %}
+                {% if not current_user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
                 </li>
@@ -37,7 +37,7 @@
                 {% endif %}
 
 
-                {% if current_user.authenticated and current_user.role == "admin" %}
+                {% if current_user.is_authenticated and current_user.role == "admin" %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
                 </li>
@@ -50,7 +50,7 @@
                         Account
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('users.index' , user_id = current_user.id) }}">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
                     </ul>
@@ -67,7 +67,7 @@
         {% if messages %}
             <div class="alert alert-dismissible fade show" role="alert">
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} mt-2">
+                    <div class="alert alert-{{ category }} mt-1">
                         {{ message }}
                     </div>
                 {% endfor %}

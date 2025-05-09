@@ -3,8 +3,7 @@ from flask import Blueprint , render_template , flash , redirect , url_for
 from flask_login import login_required , current_user
 from app import db
 
-
-admin = Blueprint("admin" , __name__ , static_folder="static/" , template_folder="templates/" , url_prefix='/admin/')
+admin = Blueprint("admin" , __name__ , static_folder="../static" , template_folder="../templates/" , url_prefix='/admin/')
 
 
 

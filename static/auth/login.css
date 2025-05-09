@@ -44,6 +44,6 @@ a {
     color: #28a745;
 }
 
-a:hover {
+.card__footer a:hover {
     text-decoration: underline;
 }

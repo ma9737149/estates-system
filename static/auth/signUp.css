@@ -6,7 +6,7 @@ body {
 
 .signup-container {
     position: absolute;
-    top: 50%;
+    top: 56%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
@@ -43,7 +43,7 @@ a {
     color: #28a745;
 }
 
-a:hover {
+.card__footer a:hover {
     text-decoration: underline;
 }
 
