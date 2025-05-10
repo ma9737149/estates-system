@@ -103,7 +103,11 @@ Admin Dashboard | Real Estate
             <tbody>
                 {% for user in users %}
                   <tr>
-                      <td>{{ user.id }}</td>
+                      <td>
+                        <a href="{{ url_for('users.index' , user_id = user.id) }}">
+                          {{ user.id }}
+                        </a>
+                      </td>
                       <td>{{ user.username }}</td>
                       <td>{{ user.email }}</td>
                       {% if user.active == 0 %}

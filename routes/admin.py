@@ -3,7 +3,7 @@ from flask import Blueprint , render_template , flash , redirect , url_for
 from flask_login import login_required , current_user
 from app import db
 
-admin = Blueprint("admin" , __name__ , static_folder="../static" , template_folder="../templates/" , url_prefix='/admin/')
+admin = Blueprint("admin" , __name__ , url_prefix='/admin/')
 
 
 
@@ -49,7 +49,7 @@ def deactivate(user_id):
         if user:
             db.session.delete(user)
             db.session.commit()
-            flash("User is deactivated succesfully")
+            flash("User is deactivated successfully")
             return redirect(url_for('admin.index'))
         else:
             flash('User does not exists' , category='danger')

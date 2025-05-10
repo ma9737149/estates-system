@@ -70,18 +70,23 @@
 </style>
 
 
-
 <div class="card shadow p-4">
     <ul class="nav nav-tabs mb-3" id="profileTabs" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">User Info</button>
         </li>
+
+        {% if properties %}
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties" type="button" role="tab">Properties Added</button>
         </li>
+        {% endif %}
+
+        {% if clients %}
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="clients-tab" data-bs-toggle="tab" data-bs-target="#clients" type="button" role="tab">Clients</button>
         </li>
+        {% endif %}
     </ul>
 
     <div class="tab-content" id="profileTabsContent">
@@ -89,7 +94,7 @@
         <div class="tab-pane fade show active" id="info" role="tabpanel">
             <div class="row">
                 <div class="col-md-3 text-center">
-                    <img src="{{ url_for('static' , filename = user.profile_image) }}" alt="Profile Image" class="rounded-circle mb-3" width="150" height="150">
+                    <img src="{{ url_for('static', filename=user.profile_image) }}" width="150" height="150">
                     <h4 class="mt-2">{{ user.username }}</h4>
                     <p class="text-muted">{{ user.role }}</p>
                 </div>
@@ -117,56 +122,50 @@
             </div>
         </div>
 
+        {% if properties %}
         <!-- Properties Tab -->
         <div class="tab-pane fade" id="properties" role="tabpanel">
             <div class="row">
+                {% for property in properties %}
                 <div class="col-md-4 mb-3">
                     <div class="card property-card">
-                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&q=80" alt="Property Image" class="img-fluid rounded">
-
+                        <img src="{{ property.image_url }}" alt="Property Image" class="img-fluid rounded">
                         <div class="card-body">
-                            <h6 class="card-title">Modern Apartment</h6>
-                            <p class="card-text">A beautiful apartment in the city center with great views.</p>
-                            <span class="badge bg-success">$250,000</span>
+                            <h6 class="card-title">{{ property.title }}</h6>
+                            <p class="card-text">{{ property.description }}</p>
+                            <span class="badge bg-success">${{ property.price }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card property-card">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" alt="Property Image" class="img-fluid rounded">
-                        <div class="card-body">
-                            <h6 class="card-title">Luxury Villa</h6>
-                            <p class="card-text">Spacious villa with a large garden and pool.</p>
-                            <span class="badge bg-success">$500,000</span>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
+        {% endif %}
 
+        {% if clients %}
         <!-- Clients Tab -->
         <div class="tab-pane fade" id="clients" role="tabpanel">
             <ul class="list-group">
+                {% for client in clients %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>Jane Smith</strong>
-                        <span class="text-muted d-block">jane.smith@example.com</span>
+                        <strong>{{ client.name }}</strong>
+                        <span class="text-muted d-block">{{ client.email }}</span>
                     </div>
-                    <span class="badge bg-success rounded-pill">+1 345 678 901</span>
+                    <span class="badge bg-success rounded-pill">{{ client.phone }}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>Mike Johnson</strong>
-                        <span class="text-muted d-block">mike.johnson@example.com</span>
-                    </div>
-                    <span class="badge bg-success rounded-pill">+1 456 789 012</span>
-                </li>
+                {% endfor %}
             </ul>
         </div>
+        {% endif %}
     </div>
 </div>
 
-<p>{{ url_for('static', filename=user.profile_image) }}</p>
+
+
+
+
+
 
 
 {% endblock %}

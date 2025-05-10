@@ -1,5 +1,5 @@
 from flask import Flask
-from .config import AppConfigrations
+from .config import AppConfigurations
 from .extensions import db , login_manager , bcrypt , migrate
 from routes import auth , estates , admin , users
 
@@ -7,8 +7,8 @@ from routes import auth , estates , admin , users
 
 
 def create_app():
-    app = Flask(__name__ , static_folder='/static' , template_folder = "/template")
-    app.config.from_object(AppConfigrations)
+    app = Flask(__name__ , static_folder='../static' , template_folder = "../templates")
+    app.config.from_object(AppConfigurations)
 
     app.register_blueprint(auth)
     app.register_blueprint(estates)

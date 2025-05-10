@@ -4,9 +4,9 @@ from app.extensions import login_manager , bcrypt , db
 from models.auth import User
 from forms.auth import LoginForm , SignUpForm
 
-auth = Blueprint("auth" , __name__ , static_folder="../static/" , template_folder="../templates/" , url_prefix="/auth")
+auth = Blueprint("auth" , __name__ , url_prefix="/auth")
 login_manager.login_view = 'auth.login'
-login_manager.login_message = "Sorry, you need to be logged in to access this route and your acccount activated"
+login_manager.login_message = "Sorry, you need to be logged in to access this route and your account activated"
 login_manager.login_message_category = "info"
 
 @login_manager.user_loader

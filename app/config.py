@@ -13,7 +13,7 @@ if not username or password == None or not database or not host  or not secret_k
     raise ValueError("One or more environment variables are missing")
 
 
-class AppConfigrations:
+class AppConfigurations:
     SQLALCHEMY_DATABASE_URI = f'mysql+mysqlconnector://{username}:{password}@{host}/{database}'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = secret_key
